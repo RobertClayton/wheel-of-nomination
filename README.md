@@ -1,24 +1,5 @@
-# README
+# Wheel of Nomination
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Very quickly thrown together for a bit of fun at stand-up
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Has a spinning wheel and trivia question
