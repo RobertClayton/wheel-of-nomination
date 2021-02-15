@@ -3,9 +3,16 @@ class HomeController < ApplicationController
   require 'net/http'
   require 'cgi'
 
+  attr_accessor :questions
+
+  def initialize
+    super
+    @questions = get_questions
+  end
+
   def index
     @names = calculate_names
-    @question = question
+    @question = questions.pop
   end
 
   private
@@ -22,30 +29,26 @@ class HomeController < ApplicationController
       "Lavanya"
     ]
 
-    num_to_fill = 12 - current.count
-    (current + current.clone.shuffle[0..num_to_fill - 1])
-  end
-
-  def question
-    get_questions.pop
+    names = current
+    until names.count >= 12
+      names += current.clone.shuffle[0..(12 - current.count) - 1]
+    end
+    names
   end
 
   def get_questions
-    @get_questions ||= begin
-      # uri = URI("https://opentdb.com/api.php?amount=50&difficulty=medium&type=multiple")
-      uri = URI("https://opentdb.com/api.php?amount=50&category=9&difficulty=medium&type=multiple")
-      raw_response = Net::HTTP.get(uri)
-      JSON.parse(raw_response)["results"].map do |question|
-        {
-          category: question["category"],
-          type: question["type"],
-          difficulty: question["difficulty"],
-          question: CGI.unescapeHTML(question["question"]),
-          correct_answer: question["correct_answer"],
-          incorrect_answers: question["incorrect_answers"],
-          answers: format_answers([question["correct_answer"]] + question["incorrect_answers"])
-        }
-      end
+    uri = URI("https://opentdb.com/api.php?amount=1&category=9&difficulty=hard&type=multiple")
+    raw_response = Net::HTTP.get(uri)
+    JSON.parse(raw_response)["results"].map do |question|
+      {
+        category: question["category"],
+        type: question["type"],
+        difficulty: question["difficulty"],
+        question: CGI.unescapeHTML(question["question"]),
+        correct_answer: question["correct_answer"],
+        incorrect_answers: question["incorrect_answers"],
+        answers: format_answers([question["correct_answer"]] + question["incorrect_answers"])
+      }
     end
   end
 
