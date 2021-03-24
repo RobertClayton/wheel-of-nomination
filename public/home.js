@@ -4,11 +4,6 @@ $(document).ready(function() {
     //  Setup variables
     var wheel = $(".wheel"),
         active = $(".active"),
-        currentRotation,
-        lastRotation = 0,
-        tolerance,
-        deg,
-
         $btnPlay = $("#btnPlay"),
         $btnSlowMo = $("#btnSlowMo");
         $btnQuestion1 = $("#btnQuestion1");

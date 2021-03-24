@@ -21,12 +21,13 @@ class HomeController < ApplicationController
     current = [
       "Robert",
       "Jiggins",
-      "Jayes",
       "Hamid",
       "Danijel",
       "Mario",
       "Andrew",
-      "Lavanya"
+      "Lavanya",
+      "Joe",
+      "Gulnur"
     ]
 
     names = current
