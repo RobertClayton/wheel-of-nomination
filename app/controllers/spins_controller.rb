@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class SpinsController < ApplicationController
   require 'json'
   require 'net/http'
   require 'cgi'
@@ -11,8 +11,8 @@ class HomeController < ApplicationController
   end
 
   def index
-    @names = calculate_names
     @users = User.all
+    @names = calculate_names
     @question = questions.pop
   end
 
@@ -20,21 +20,13 @@ class HomeController < ApplicationController
 
 
   def name_list
-    [
-      "Robert",
-      "Jiggins",
-      # "Hamid", # 2
-      "Danijel",
-      "Mario",
-      "Andrew",
-      "Lavanya",
-      # "Joe", # 1
-      "Gulnur"
-    ]
+    @users.pluck(:name)
   end
 
   def calculate_names
     names = name_list
+    return names if names.count >= 12
+
     until names.count >= 12
       names += name_list.clone.shuffle[0..(12 - name_list.count) - 1]
     end
@@ -61,6 +53,6 @@ class HomeController < ApplicationController
     answers.map do |answer|
       CGI.unescapeHTML(answer)
     end
-      .shuffle
+           .shuffle
   end
 end
