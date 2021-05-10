@@ -20,17 +20,7 @@ class HomeController < ApplicationController
 
 
   def name_list
-    [
-      "Robert",
-      "Jiggins",
-      # "Hamid", # 2
-      "Danijel",
-      "Mario",
-      "Andrew",
-      "Lavanya",
-      # "Joe", # 1
-      "Gulnur"
-    ]
+    %w[Robert Jiggins Hamid Danijel Mario Andrew Joe Ravi Paris]
   end
 
   def calculate_names
