@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_30_163918) do
+ActiveRecord::Schema.define(version: 2021_05_23_224553) do
+
+  create_table "millionaire_questions", force: :cascade do |t|
+    t.string "question"
+    t.string "a"
+    t.string "b"
+    t.string "c"
+    t.string "d"
+    t.string "answer"
+    t.boolean "active", default: true
+  end
 
   create_table "nominations", force: :cascade do |t|
     t.date "date"
