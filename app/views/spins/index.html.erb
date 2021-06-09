@@ -4,20 +4,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenLite.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TimelineMax.min.js"></script>
 <script type="text/javascript" src="home.js"></script>
-<script>
-    var correct_answer = '<%= @question[:correct_answer] %>';
-    var qq = '<%= @question[:question] %>';
-    var q1 = '<%= @question[:answers][0] %>';
-    var q2 = '<%= @question[:answers][1] %>';
-    var q3 = '<%= @question[:answers][2] %>';
-    var q4 = '<%= @question[:answers][3] %>';
-    console.log(correct_answer);
-    console.log(qq);
-    console.log(q1);
-    console.log(q2);
-    console.log(q3);
-    console.log(q4);
-</script>
 <link href="https://fonts.googleapis.com/css?family=Raleway:800" rel="stylesheet">
 
 <%= render 'nav' %>
@@ -104,27 +90,6 @@
     </div>
   </div>
 
-
-<!--  <div class="col" id="main-cols" style="margin-top: 120px;">-->
-<!--    <div class="row" style="padding-left: 40px; padding-right: 40px; padding-bottom: 30px;">-->
-<!--      <h2><%#= @question[:question] %></h2>-->
-<!--    </div>-->
-<!--    <div class="row" style="padding-left: 80px; padding-right: 80px;">-->
-<!--      <div class="row" >-->
-<!--        <button type="button" id="btnQuestion1" class="btn btn-primary"><%#= @question[:answers][0] %></button>-->
-<!--      </div>-->
-<!--      <div class="row">-->
-<!--        <button type="button" id="btnQuestion2" class="btn btn-primary"><%#= @question[:answers][1] %></button>-->
-<!--      </div>-->
-<!--      <div class="row">-->
-<!--        <button type="button" id="btnQuestion3" class="btn btn-primary"><%#= @question[:answers][2] %></button>-->
-<!--      </div>-->
-<!--      <div class="row">-->
-<!--        <button type="button" id="btnQuestion4" class="btn btn-primary"><%#= @question[:answers][3] %></button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
   <div class="col" id="main-cols" style="margin-top: 0px;">
     <div class="row" style="padding-left: 40px; padding-right: 40px; padding-bottom: 30px;">
       <h2> Who did it land on? </h2>
@@ -132,7 +97,7 @@
 
     <div class="row" style="padding-left: 80px; padding-right: 80px;">
       <% @users.each do |user| %>
-        <%= form_for Nomination.new, :url => jeopardy_path, :html => {:method => :get} do %>
+        <%= form_for Nomination.new, :url => millionaire_path, :html => {:method => :get} do %>
           <%= hidden_field_tag :user, user.id %>
           <%= button_tag(type: "submit", :class => "btn btn-primary") do %> <%= user.name %> <% end %>
         <% end %>

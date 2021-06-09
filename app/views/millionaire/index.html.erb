@@ -1,4 +1,3 @@
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
@@ -15,14 +14,18 @@
     var answer = '<%= @question[:answer] %>';
     var fiftyfifty1 = '<%= @fiftyfifty[0] %>';
     var fiftyfifty2 = '<%= @fiftyfifty[1] %>';
+    var fiftyFiftyUsed = '<%= @user.fifty_fifty.to_s %>';
+    var phoneAFriendUsed = '<%= @user.phone_a_friend %>';
+    var askTheTeamUsed = '<%= @user.ask_the_team %>';
     console.log("Question: " + question);
     console.log("A: " + a);
     console.log("B: " + b);
     console.log("C: " + c);
     console.log("D: " + d);
     console.log("Answer: " + answer);
-    console.log("fiftyfifty1: " + fiftyfifty1);
-    console.log("fiftyfifty2: " + fiftyfifty2);
+    console.log("fiftyFiftyUsed: " + fiftyFiftyUsed);
+    console.log("phoneAFriendUsed: " + phoneAFriendUsed);
+    console.log("askTheTeamUsed: " + askTheTeamUsed);
 </script>
 
 <%= render 'nav' %>
@@ -48,9 +51,11 @@
 
     <div class="row" style="padding-left: 20px;">
       <div class="col" id="main-cols">
-        <%= form_for @nominations, :url => new_scoreboard_path(@login), :html => {:method => :get} do %>
+        <%= form_with :url => new_scoreboard_path(@login), :html => {:method => :get} do %>
           <%= hidden_field_tag :user, @user.id %>
           <%= hidden_field_tag :money, @question[:money] %>
+          <%= hidden_field_tag :fifty_fifty, @user.fifty_fifty %>
+
           <%= button_tag(type: "submit", :class => "btn btn-success") do %> Correct? <% end %>
         <% end %>
       </div>
@@ -86,7 +91,24 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
 
+    <div class="row" id="main-row" style="padding: 20px">
+      <div class="col" id="main-cols">
+        <div class="row" style="padding-left: 80px; padding-right: 80px;">
+          <div class="row" style="padding-left: 80px; padding-right: 80px;">
+            <div class="row" >
+              <button type="button" id="powerUpFiftyFifty" class="btn btn-info">50-50</button>
+            </div>
+            <div class="row">
+              <button type="button" id="powerUpPhoneAFriend" class="btn btn-info">Phone a friend</button>
+            </div>
+            <div class="row">
+              <button type="button" id="powerUpAskTheTeam" class="btn btn-info">Ask the team</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
