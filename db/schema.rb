@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_23_224553) do
+ActiveRecord::Schema.define(version: 2021_05_30_213003) do
 
   create_table "millionaire_questions", force: :cascade do |t|
     t.string "question"
@@ -56,6 +56,10 @@ ActiveRecord::Schema.define(version: 2021_05_23_224553) do
     t.string "name"
     t.integer "score"
     t.integer "team_id"
+    t.integer "score_multiplier", default: 1
+    t.boolean "phone_a_friend", default: true
+    t.boolean "ask_the_team", default: true
+    t.boolean "fifty_fifty", default: true
     t.index ["team_id"], name: "index_users_on_team_id"
   end
 
