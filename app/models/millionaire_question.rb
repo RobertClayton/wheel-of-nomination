@@ -1,0 +1,2 @@
+class MillionaireQuestion < ApplicationRecord
+end
