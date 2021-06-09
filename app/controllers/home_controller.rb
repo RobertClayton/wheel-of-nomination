@@ -12,28 +12,23 @@ class HomeController < ApplicationController
 
   def index
     @names = calculate_names
+    @users = User.all
     @question = questions.pop
   end
 
   private
 
-  def calculate_names
-    current = [
-      "Robert",
-      "Jiggins",
-      "Jayes",
-      "Hamid",
-      "Danijel",
-      "Mario",
-      "Andrew",
-      "Lavanya"
-    ]
 
-    names = current
+  def name_list
+    %w[Robert Jiggins Hamid Danijel Mario Andrew Joe Ravi Paris]
+  end
+
+  def calculate_names
+    names = name_list
     until names.count >= 12
-      names += current.clone.shuffle[0..(12 - current.count) - 1]
+      names += name_list.clone.shuffle[0..(12 - name_list.count) - 1]
     end
-    names
+    names.shuffle
   end
 
   def get_questions
