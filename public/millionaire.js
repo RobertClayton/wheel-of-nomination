@@ -5,6 +5,8 @@ $(document).ready(function() {
     var $btnQuestion3 = $("#btnQuestion3");
     var $btnQuestion4 = $("#btnQuestion4");
     var $fiftyFifty = $("#powerUpFiftyFifty");
+    var $phoneAFriend = $("#powerUpPhoneAFriend");
+    var $askTheTeam = $("#powerUpAskTheTeam");
     var a = document.getElementById("btnQuestion1")
     var b = document.getElementById("btnQuestion2")
     var c = document.getElementById("btnQuestion3")
@@ -13,6 +15,8 @@ $(document).ready(function() {
     console.log('Millionaire JS')
 
     setUpFiftyfifty()
+    setUpPhoneAFriend()
+    setUpAskTheTeam()
 
     $btnQuestion1.click(
         function() {
@@ -132,4 +136,51 @@ $(document).ready(function() {
     function updateFiftyfiftyHiddenValue() {
         document.getElementById("fifty_fifty").value = document.getElementById("powerUpFiftyFifty").classList.contains("btn-dark")
     }
+
+    $phoneAFriend.click(
+        function() {
+            if (phoneAFriendUsed === 'false') {
+                togglePhoneAFriend()
+                updatePhoneAFriendHiddenValue()
+            }
+        }
+    )
+
+    function setUpPhoneAFriend() {
+        if (phoneAFriendUsed === 'true') {
+            togglePhoneAFriend()
+        }
+    }
+
+    function togglePhoneAFriend() {
+        document.getElementById("powerUpPhoneAFriend").classList.toggle("btn-dark")
+    }
+
+    function updatePhoneAFriendHiddenValue() {
+        document.getElementById("phone_a_friend").value = document.getElementById("powerUpPhoneAFriend").classList.contains("btn-dark")
+    }
+
+    $askTheTeam.click(
+        function() {
+            if (askTheTeamUsed === 'false') {
+                toggleAskTheTeam()
+                updateAskTheTeamHiddenValue()
+            }
+        }
+    )
+
+    function setUpAskTheTeam() {
+        if (askTheTeamUsed === 'true') {
+            toggleAskTheTeam()
+        }
+    }
+
+    function toggleAskTheTeam() {
+        document.getElementById("powerUpAskTheTeam").classList.toggle("btn-dark")
+    }
+
+    function updateAskTheTeamHiddenValue() {
+        document.getElementById("ask_the_team").value = document.getElementById("powerUpAskTheTeam").classList.contains("btn-dark")
+    }
+
 });

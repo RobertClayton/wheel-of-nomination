@@ -55,6 +55,8 @@
           <%= hidden_field_tag :user, @user.id %>
           <%= hidden_field_tag :money, @question[:money] %>
           <%= hidden_field_tag :fifty_fifty, @user.fifty_fifty %>
+          <%= hidden_field_tag :phone_a_friend, @user.phone_a_friend %>
+          <%= hidden_field_tag :ask_the_team, @user.ask_the_team %>
 
           <%= button_tag(type: "submit", :class => "btn btn-success") do %> Correct? <% end %>
         <% end %>
@@ -98,7 +100,7 @@
       <div class="col" id="main-cols">
         <div class="row" style="padding-left: 80px; padding-right: 80px;">
           <div class="row" style="padding-left: 80px; padding-right: 80px;">
-            <div class="row" >
+            <div class="row">
               <button type="button" id="powerUpFiftyFifty" class="btn btn-info">50-50</button>
             </div>
             <div class="row">
