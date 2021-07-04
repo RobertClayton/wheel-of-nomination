@@ -4,7 +4,6 @@
 
 <table class="d-flex justify-content-center align-middle table table-sm table-responsive table-hover table-bordered table-striped table-dark">
   <tr>
-    <th scope="col">#</th>
     <th scope="col">Name</th>
     <th scope="col">Score</th>
     <th scope="col">Team</th>
@@ -13,9 +12,8 @@
     <th scope="col"></th>
   </tr>
 
-  <% @users.each_with_index do |user, i| %>
+  <% @users.each do |user| %>
     <tr>
-      <th scope="row"><%= i + 1 %></th>
       <td><%= user.name %></td>
       <td><%= number_with_delimiter(user.score, delimiter: ',') %></td>
       <td><%= user.team.name %></td>

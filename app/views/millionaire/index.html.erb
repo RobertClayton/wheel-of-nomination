@@ -31,25 +31,28 @@
 <%= render 'nav' %>
 
 <div class="row" id="main-row" style="padding: 40px">
-
   <div class="col" id="main-cols">
-    <div class="row" style="padding-top: 40px; padding-bottom: 40px;">
+    <div class="row" style="padding-top: 40px; padding-bottom: 20px;">
       <h1>Scoreboard</h1>
     </div>
 
-    <div class="row" id="main-row" style="padding: 20px">
-      <div class="col" id="main-cols">
-        <div class="row" style="padding-left: 40px; padding-right: 40px; padding-bottom: 30px;">
-          <ul>
-            <% @scoreboard.each_with_index do |score, i| %>
-              <ui><strong><%= "#{i + 1}: " %></strong><%= "$#{score.score} - #{score.name}" %></ui><br>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <table class="d-flex justify-content-center align-middle table table-sm table-responsive table-hover table-bordered table-striped table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Score</th>
+        <th scope="col">Name</th>
+      </tr>
 
-    <div class="row" style="padding-left: 20px;">
+      <% @scoreboard.each_with_index do |score, i| %>
+        <tr>
+          <th scope="row"><%= i + 1 %></th>
+          <td><%= "$#{number_with_delimiter(score.score, delimiter: ',')}" %></td>
+          <td><%= score.name %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <div class="row">
       <div class="col" id="main-cols">
         <%= form_with :url => new_scoreboard_path(@login), :html => {:method => :get} do %>
           <%= hidden_field_tag :user, @user.id %>
@@ -69,20 +72,20 @@
       <h1>Millionaire!!!</h1>
     </div>
 
-    <div class="row" id="main-row" style="padding: 20px">
+    <div class="row" id="main-row">
 
       <div class="col" id="main-cols">
-        <div class="row" style="padding-left: 40px; padding-right: 40px; padding-bottom: 30px;">
+        <div class="row" style="padding-bottom: 30px;">
           <h2><%= @user[:name] %></h2>
           <h4>Current streak: <%= @user[:score_multiplier]%></h4>
           <h4><%= "for £#{@money[:word]}"%></h4>
         </div>
 
-        <div class="row" style="padding-left: 40px; padding-right: 40px; padding-bottom: 30px;">
+        <div class="row" style="padding-bottom: 30px;">
           <h2><%= @question[:question] %></h2>
         </div>
 
-        <div class="row" style="padding-left: 80px; padding-right: 80px;">
+        <div class="row" style="padding-left: 40px; padding-right: 40px;">
           <div class="row" style="padding-left: 80px; padding-right: 80px;">
             <div class="row" >
               <button type="button" id="btnQuestion1" class="btn btn-primary"><%= @question[:a] %></button>
@@ -101,7 +104,7 @@
       </div>
     </div>
 
-    <div class="row" id="main-row" style="padding: 20px">
+    <div class="row" id="main-row" style="padding-top: 20px;">
       <div class="col" id="main-cols">
         <div class="row" style="padding-left: 80px; padding-right: 80px;">
           <div class="row" style="padding-left: 80px; padding-right: 80px;">
@@ -121,23 +124,25 @@
   </div>
 
   <div class="col" id="main-cols">
-    <div class="row" style="padding-top: 40px; padding-bottom: 40px;">
+    <div class="row" style="padding-top: 40px; padding-bottom: 20px;">
       <h1>Nominations</h1>
     </div>
 
-    <div class="row" id="main-row" style="padding: 20px">
-      <div class="col" id="main-cols">
-        <div class="row" style="padding-left: 40px; padding-right: 40px; padding-bottom: 30px;">
-          <ul>
-            <% @nominations.each do |nomination| %>
-              <ui><strong><%= "#{nomination.formatted_date}: " %></strong><%= "#{nomination.user&.name}" %></ui><br>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <table class="d-flex justify-content-center align-middle table table-sm table-responsive table-hover table-bordered table-striped table-dark">
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Name</th>
+      </tr>
 
-    <div class="row" style="padding-left: 20px;">
+      <% @nominations.each do |nomination| %>
+        <tr>
+          <td><%= nomination.formatted_date %></td>
+          <td><%= nomination.user&.name %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <div class="row">
       <div class="col" id="main-cols">
         <%= form_for @nominations, :url => nomination_index_path(@login), :html => {:method => :post} do %>
           <%= hidden_field_tag :user, @user.id %>

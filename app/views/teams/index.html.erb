@@ -4,16 +4,14 @@
 
 <table class="d-flex justify-content-center align-middle table table-sm table-responsive table-hover table-bordered table-striped table-dark">
   <tr>
-    <th scope="col">#</th>
     <th scope="col">Name</th>
     <th scope="col"></th>
     <th scope="col"></th>
     <th scope="col"></th>
   </tr>
 
-  <% @teams.each_with_index do |team, i| %>
+  <% @teams.each do |team| %>
     <tr>
-      <th scope="row"><%= i + 1 %></th>
       <td><%= team.name %></td>
       <td>
         <!-- Show -->
