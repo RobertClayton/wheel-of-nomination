@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   end
 
   def index
-    @teams = Team.all
+    @teams = Team.all.sort_by { |user| user.name }
   end
 
   def show

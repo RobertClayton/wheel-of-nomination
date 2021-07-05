@@ -14,6 +14,30 @@
 
 <div class="row" id="main-row">
   <div class="col" id="main-cols">
+    <div class="row" style="padding-top: 40px; padding-bottom: 20px;">
+      <h1>Entries</h1>
+    </div>
+
+    <table class="d-flex justify-content-center align-middle table table-sm table-responsive table-hover table-bordered table-striped table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Entries</th>
+        <th scope="col">Name</th>
+        <th scope="col">%</th>
+      </tr>
+
+      <% @entries.each_with_index do |entry, i| %>
+        <tr>
+          <th scope="row"><%= i + 1 %></th>
+          <td><%= entry[:entries] %></td>
+          <td><%= entry[:name] %></td>
+          <td><%= ((100.0 / @total_entries) * entry[:entries]).round(1) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="col" id="main-cols">
     <div class="row">
       <div class="luckywheel">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 730 730">

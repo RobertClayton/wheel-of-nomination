@@ -4,61 +4,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenLite.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TimelineMax.min.js"></script>
 <script type="text/javascript" src="home.js"></script>
-<script>
-    var correct_answer = '<%= @question[:correct_answer] %>';
-    var qq = '<%= @question[:question] %>';
-    var q1 = '<%= @question[:answers][0] %>';
-    var q2 = '<%= @question[:answers][1] %>';
-    var q3 = '<%= @question[:answers][2] %>';
-    var q4 = '<%= @question[:answers][3] %>';
-    console.log(correct_answer);
-    console.log(qq);
-    console.log(q1);
-    console.log(q2);
-    console.log(q3);
-    console.log(q4);
-</script>
 <link href="https://fonts.googleapis.com/css?family=Raleway:800" rel="stylesheet">
 
 <%= render 'nav' %>
 
-<div class="row" style="padding-top: 40px; padding-bottom: 80px;">
+<div class="row" style="padding-top: 40px; padding-bottom: 40px;">
   <h1>Who's here today?</h1>
 </div>
 
-<div class="row" id="main-row" style="padding: 40px">
-  <div class="col" id="main-cols">
-    <div class="row">
+<%= form_for @users, :url => spins_path, :html => {:method => :get} do %>
+  <table class="d-flex justify-content-center align-middle table table-responsive table-hover table-bordered table-striped table-dark">
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><input type="checkbox" name="user_ids[]" value="<%= user.id %>" checked></td>
+      </tr>
+    <% end %>
+  </table>
 
+  <%= button_tag(type: "submit", :class => "btn btn-success") do %> Select <% end %>
+<% end %>
 
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Score</th>
-          <th>Team</th>
-          <th data-sort-ignore="true"><input type="checkbox" id="selectAll"></input></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <td><%= user.name %></td>
-            <td><%= user.score %></td>
-            <td><%= user.team.name %></td>
-            <td><%= check_box_tag "user_ids[]", user.id, false, class: 'selectable' %></td>
-          </tr>
-        <% end %>
-      </tbody>
-
-      <%= submit_tag "", :class => 'btn btn-primary btn-xs' %>
-
-
-        <% @users.each do |user| %>
-        <%= form_for Nomination.new, :url => jeopardy_path, :html => {:method => :get} do %>
-          <%= hidden_field_tag :user, user.id %>
-          <%= button_tag(type: "submit", :class => "btn btn-primary") do %> <%= user.name %> <% end %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-</div>
