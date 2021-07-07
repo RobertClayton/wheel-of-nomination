@@ -54,14 +54,16 @@
 
     <div class="row">
       <div class="col" id="main-cols">
-        <%= form_with :url => new_scoreboard_path(@login), :html => {:method => :get} do %>
-          <%= hidden_field_tag :user, @user.id %>
+        <%= form_for @scoreboard, :url => new_scoreboard_path(@login), :html => {:method => :get} do %>
+          <%= hidden_field_tag :user_id, @user.id %>
           <%= hidden_field_tag :money, @money[:number] %>
           <%= hidden_field_tag :fifty_fifty, @user.fifty_fifty %>
           <%= hidden_field_tag :phone_a_friend, @user.phone_a_friend %>
           <%= hidden_field_tag :ask_the_team, @user.ask_the_team %>
 
           <%= button_tag(type: "submit", :class => "btn btn-success") do %> Correct? <% end %>
+          <br>
+          <%= button_tag(type: "submit", :class => "btn btn-success", name: 'five_in_a_row') do %> Five? <% end %>
         <% end %>
       </div>
     </div>
@@ -144,8 +146,8 @@
 
     <div class="row">
       <div class="col" id="main-cols">
-        <%= form_for @nominations, :url => nomination_index_path(@login), :html => {:method => :post} do %>
-          <%= hidden_field_tag :user, @user.id %>
+        <%= form_for @nominations, :url => nominations_failed_nomination_path(@login), :html => {:method => :post} do %>
+          <%= hidden_field_tag :user_id, @user.id %>
           <%= button_tag(type: "submit", :class => "btn btn-danger") do %> Nominated <% end %>
         <% end %>
       </div>
