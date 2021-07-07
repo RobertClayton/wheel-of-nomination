@@ -21,12 +21,12 @@ class SpinsController < ApplicationController
   end
 
   def calculated_entries
-    nom_count = Nomination.last.id
+    nominations = Nomination.all.sort_by(&:date).reverse
 
     present_users.map do |user|
       {
         name: user.name,
-        entries: (user.nominations.last.id - nom_count).abs
+        entries: nominations.index { |nomination| nomination.user == user } || User.count / 2
       }
     end
   end
