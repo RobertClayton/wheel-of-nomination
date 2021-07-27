@@ -5,12 +5,16 @@
     <th scope="col" class="text-center">Name</th>
     <th scope="col" class="text-center">Score</th>
     <th scope="col" class="text-center">Team</th>
+    <th scope="col" class="text-center">Created at</th>
+    <th scope="col" class="text-center">Updated at</th>
   </tr>
 
   <tr>
     <td class="text-center"><%= @user.name %></td>
     <td class="text-center"><%= number_with_delimiter(@user.score, delimiter: ',') %></td>
     <td class="text-center"><%= @user.team.name %></td>
+    <td class="text-center"><%= @user.created_at&.to_datetime&.strftime("%Y-%m-%d") %></td>
+    <td class="text-center"><%= @user.updated_at&.to_datetime&.strftime("%Y-%m-%d") %></td>
   </tr>
 </table>
 

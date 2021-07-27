@@ -16,12 +16,16 @@
       <th scope="col">Name</th>
       <th scope="col">Team</th>
       <th scope="col">Score</th>
+      <th scope="col">Created at</th>
+      <th scope="col">Updated at</th>
     </tr>
 
     <tr>
       <td><%= f.text_field :name, class: 'text-center', placeholder: 'Michael' %></td>
       <td><%= f.select :team_id, options_for_select(Team.all.map { |t| [t.name, t.id] }) %></td>
       <td><%= f.text_field :score, class: 'text-center', placeholder: 0 %></td>
+      <td><%= f.date_select :created_at, class: 'text-center', placeholder: 0 %></td>
+      <td><%= f.date_select :updated_at, class: 'text-center', placeholder: 0 %></td>
     </tr>
   </table>
 

@@ -7,6 +7,8 @@
     <th scope="col">Name</th>
     <th scope="col">Score</th>
     <th scope="col">Team</th>
+    <th scope="col">Created at</th>
+    <th scope="col">Updated at</th>
     <th scope="col"></th>
     <th scope="col"></th>
     <th scope="col"></th>
@@ -17,6 +19,8 @@
       <td><%= user.name %></td>
       <td><%= number_with_delimiter(user.score, delimiter: ',') %></td>
       <td><%= user.team.name %></td>
+      <td><%= user.created_at&.to_datetime&.strftime("%Y-%m-%d") %></td>
+      <td><%= user.updated_at&.to_datetime&.strftime("%Y-%m-%d") %></td>
       <td>
         <!-- Show -->
         <%= link_to '<button type="button" class="btn btn-success btn-sm" style="width: 34px; height: 34px;">
