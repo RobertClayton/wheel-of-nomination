@@ -26,7 +26,7 @@ class SpinsController < ApplicationController
     present_users.map do |user|
       {
         name: user.name,
-        entries: nominations.index { |nomination| nomination.user == user } || User.count / 2
+        entries: nominations.index { |nomination| nomination.user == user } || new_user_entries(user)
       }
     end
   end
@@ -39,5 +39,9 @@ class SpinsController < ApplicationController
     return User.all.pluck(:id) if params[:user_ids].nil?
 
     params[:user_ids].map(&:to_i)
+  end
+
+  def new_user_entries(user)
+    (User.count / 2) + (Time.zone.now.to_date - user.created_at.to_date).to_i
   end
 end
