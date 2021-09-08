@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_27_233315) do
+ActiveRecord::Schema.define(version: 2021_07_28_000546) do
 
   create_table "millionaire_questions", force: :cascade do |t|
     t.string "question"
@@ -39,6 +39,11 @@ ActiveRecord::Schema.define(version: 2021_07_27_233315) do
   end
 
   create_table "scoreboards", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "scores", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

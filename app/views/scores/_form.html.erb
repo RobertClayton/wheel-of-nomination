@@ -1,0 +1,51 @@
+<%#= form_with(model: score, local: true) do |form| %>
+  <%# if score.errors.any? %>
+<!--    <div id="error_explanation">-->
+<!--      <h2><%#= pluralize(score.errors.count, "error") %> prohibited this score from being saved:</h2>-->
+
+<!--      <ul>-->
+        <%# score.errors.full_messages.each do |message| %>
+<!--          <li><%#= message %></li>-->
+        <%# end %>
+<!--      </ul>-->
+<!--    </div>-->
+  <%# end %>
+
+<!--  <div class="actions">-->
+    <%#= form.submit %>
+<!--  </div>-->
+<%# end %>
+
+
+
+
+
+<%= form_for @score do |f| %>
+  <% if @score&.errors&.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@score.errors.count, "error") %> prohibited
+        this score from being saved:</h2>
+      <ul>
+        <% @score.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="d-flex justify-content-center align-middle table table-sm table-responsive table-hover table-bordered table-striped table-dark">
+    <tr>
+      <th scope="col">Created at</th>
+      <th scope="col">Updated at</th>
+    </tr>
+
+    <tr>
+      <td><%= f.date_select :created_at, class: 'text-center', placeholder: 0 %></td>
+      <td><%= f.date_select :updated_at, class: 'text-center', placeholder: 0 %></td>
+    </tr>
+  </table>
+
+  <p>
+    <%= f.submit class: 'btn btn-success' %>
+  </p>
+<% end %>

@@ -17,7 +17,7 @@
   <% @nominations.each do |nomination| %>
     <tr>
       <td><%= nomination.id %></td>
-      <td><%= nomination.user.name %></td>
+      <td><%= nomination.user&.name %></td>
       <td><%= nomination.date %></td>
       <td>
         <!-- Show -->
