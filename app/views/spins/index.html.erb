@@ -73,10 +73,8 @@
 
               <text class="wheel-text">
                 <% @names.each_with_index do |name, index|  %>
-                  <textPath href="#_<%=index+1%>" startOffset="120">
-                    <%=name%>
-                  </textPath>
-                <% end  %>
+                  <textPath href="#_<%=index+1%>" startOffset="120"><%=name%></textPath>
+                <% end %>
               </text>
 
             </g>
